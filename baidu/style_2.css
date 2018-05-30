@@ -1,0 +1,26 @@
+body > div:nth-of-type(1){
+    width: 15%;
+    min-height: 900px;
+    float: left;
+    background-color: rgb(79,158,255);
+    padding-top: 10px;
+}
+body > div:nth-of-type(2){
+    float: right;
+    width: 80%;
+}
+p{
+    white-space: pre-wrap;
+}
+.second{
+    padding: 10px 10px 10px 10px;
+}
+.first{
+    text-align: center;
+}
+span > strong{
+    font-size: 20px;
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}

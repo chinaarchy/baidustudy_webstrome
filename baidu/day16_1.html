@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+        #result{
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+<input id="first-number" type="number" value="0" placeholder="第一个数字">
+<input id="second-number" type="number" value="0" placeholder="第二个数字">
+<button id="add-btn">加</button>
+<button id="minus-btn">减</button>
+<button id="times-btn">乘</button>
+<button id="divide-btn">除</button>
+<p id="result">运算结果</p>
+<script>
+    var resultNum = document.querySelector('#result')
+    var checkNum = function (firstNum,secondNum) {
+        if (isNaN(firstNum) || isNaN(secondNum)){
+            return true
+        }
+        return false
+    }
+    var addBtn = document.querySelector('#add-btn')
+    addBtn.addEventListener('click',function () {
+        calculateResult(1)
+    })
+    var minBtn = document.querySelector('#minus-btn')
+    minBtn.addEventListener('click',function () {
+        calculateResult(2)
+    })
+    var mutiBtn = document.querySelector('#times-btn')
+    mutiBtn.addEventListener('click',function () {
+        calculateResult(3)
+    })
+    var divideBtn = document.querySelector('#divide-btn')
+    divideBtn.addEventListener('click',function () {
+        calculateResult(4)
+    })
+    var calculateResult = function (type) {
+        try{
+            var temp = 0
+            var firstNum = parseInt(document.querySelector('#first-number').value)
+            var secondNum = parseInt(document.querySelector('#second-number').value)
+            if (checkNum(firstNum,secondNum)) throw "Number Only"
+            switch (type) {
+                case 1 : temp = (firstNum + secondNum).toString();break;
+                case 2 : temp = (firstNum - secondNum).toString();break;
+                case 3 : temp = (firstNum * secondNum).toString();break;
+                case 4 : {
+                    if (secondNum == 0) throw "Second Number Can't Be Zero"
+                    temp = (firstNum / secondNum).toString();
+                }break;
+            }
+            resultNum.insertAdjacentHTML('beforeEnd',temp)
+            resultNum.innerHTML = "运算结果   "+temp
+        }catch (e) {
+            console.log(e)
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <label>String A:
+        <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+    </label>
+    <textarea id="str-a"></textarea>
+    <label>String B:
+        <input id="radio-b" type="radio" name="str-obj" value="b">
+    </label>
+    <textarea id="str-b"></textarea>
+    <label>Num A：<input id="num-a" type="number" value="0"></label>
+    <label>Num B：<input id="num-b" type="number" value="1"></label>
+</div>
+<div>
+    <button id="first-btn">获取当前选中输入的内容长度</button>
+    <button id="second-btn">当前选中输入中的第3个字符</button>
+    <button id="third-btn">把两个输入框的文字连接在一起输出（concat）</button>
+    <button id="forth-btn">输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+    <button id="fifth-btn">输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+    <button id="sixth-btn">使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+    <button id="seventh-btn">当前选中输入框的行数</button>
+    <button id="eighth-btn">使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+    <button id="ninth-btn">把所选输入框中的内容全部转为大写</button>
+    <button id="tenth-btn">把所选输入框中的内容全部转为小写</button>
+    <button id="eleventh-btn">把所选输入框中内容的半角空格全部去除</button>
+    <button id="twentieth-btn">把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+</div>
+<p id="result"></p>
+<script>
+    var firstBtn = document.getElementById("first-btn")
+    var secondBtn = document.getElementById('second-btn')
+    var thirdBtn = document.getElementById('third-btn')
+    var forthBtn = document.getElementById('forth-btn')
+    var fifthBtn = document.getElementById('fifth-btn')
+    var sixthBtn = document.getElementById('sixth-btn')
+    var seventhBtn = document.getElementById('seventh-btn')
+    var eighthBtn = document.getElementById('eighth-btn')
+    var ninthBtn = document.getElementById('ninth-btn')
+    var tenthBtn = document.getElementById('tenth-btn')
+    var eleventhBtn = document.getElementById('eleventh-btn')
+    var twentiethBtn = document.getElementById('twentieth-btn')
+    var stringA = document.getElementById('str-a')
+    var stringB = document.getElementById('str-b')
+    var inputA = document.getElementById('radio-a')
+    var numA = document.getElementById('num-a')
+    var numB = document.getElementById('num-b')
+    var pResult = document.getElementById('result')
+    firstBtn.addEventListener('click',function () {
+         if (inputA.checked){
+             pResult.innerHTML = stringA.value.length
+         }else{
+             pResult.innerHTML = stringB.value.length
+         }
+    })
+    secondBtn.addEventListener('click',function () {
+        if (inputA.checked){
+            pResult.innerHTML = stringA.value.slice(0,3)
+        } else {
+            pResult.innerHTML = stringB.value.slice(0,3)
+        }
+    })
+    thirdBtn.addEventListener('click',function () {
+        pResult.innerHTML = stringA.value + stringB.value
+    })
+    forthBtn.addEventListener('click',function () {
+        pResult.innerHTML = stringA.value.indexOf(stringB.value)
+    })
+    fifthBtn.addEventListener('click',function () {
+        pResult.innerHTML = stringA.value.lastIndexOf(stringB.value)
+    })
+    sixthBtn.addEventListener('click',function () {
+        if (inputA.checked){
+            pResult.innerHTML = stringA.value.slice(numA.value,numB.value)
+        } else {
+            pResult.innerHTML = stringB.value.slice(numA.value,numB.value)
+        }
+
+    })
+    eighthBtn.addEventListener('click',function () {
+        if (inputA.checked){
+            pResult.innerHTML = stringA.value.substr(numA.value,numB.value)
+        } else {
+            pResult.innerHTML = stringB.value.substr(numA.value,numB.value)
+        }
+    })
+    ninthBtn.addEventListener('click',function () {
+        if (inputA.checked){
+            pResult.innerHTML = stringA.value.toUpperCase()
+        } else{
+            pResult.innerHTML = stringB.value.toUpperCase()
+
+        }
+    })
+    tenthBtn.addEventListener('click',function () {
+        if (inputA.checked){
+            pResult.innerHTML = stringA.value.toLowerCase()
+        } else{
+            pResult.innerHTML = stringB.value.toLowerCase()
+        }
+    })
+    eleventhBtn.addEventListener('click',function () {
+        if (inputA.checked){
+            clearA(stringA.value,'',' ')
+        } else {
+            clearA(stringB.value,'',' ')
+        }
+    })
+    twentiethBtn.addEventListener('click',function () {
+        if (inputA.checked){
+            clearA(stringA.value,stringB.value,'a')
+        } else {
+            clearA(stringA.value,stringB.value,'a')
+        }
+    })
+
+
+    var clearA = function (stringName,changeString,findString) {
+        var count = 0
+        for(var i = 0; i < stringName.length; i++){
+            if(stringName[i] == findString){
+                count++
+            }
+        }
+        while(count > 0){
+            stringName = stringName.replace(findString,changeString)
+            count--
+        }
+        pResult.innerHTML = stringName
+    }
+</script>
+</body>
+</html>

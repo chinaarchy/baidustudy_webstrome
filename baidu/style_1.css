@@ -1,0 +1,6 @@
+span > strong{
+    font-size: 20px;
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}

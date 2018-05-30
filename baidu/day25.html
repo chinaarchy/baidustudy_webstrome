@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>day25</title>
+</head>
+<body>
+    <button id="type-1">格式1</button>
+    <button id="type-2">格式2</button>
+    <p id="result"></p>
+    <script>
+        var type1 = document.getElementById('type-1')
+        var type2 = document.getElementById('type-2')
+        var pResult = document.getElementById('result')
+        var templateTime = true
+        type1.addEventListener('click',function () {
+            templateTime = true
+        })
+        type2.addEventListener('click',function () {
+            templateTime = false
+        })
+        setInterval('reNewTime()', 1000);
+        var reNewTime = function () {
+            var now = new Date()
+            if (templateTime){
+                pResult.innerText = templateTime_classic(now)
+            } else{
+                pResult.innerText = templateTime_new(now)
+            }
+        }
+        var templateTime_new = function (now) {
+            var t = `${now.getFullYear()}-${completeNumber(now.getMonth() + 1)}-${completeNumber(now.getDate())} ${getWeekDay_En(now.getDay())} ${completeNumber(now.getHours())}:${completeNumber(now.getMinutes())}:${completeNumber(now.getSeconds())}`
+            return t
+        }
+        var templateTime_classic = function (now) {
+            var t = `${now.getFullYear()}年${completeNumber(now.getMonth() + 1)}月${completeNumber(now.getDate())}日${getWeekDay_Ch(now.getDay())}${completeNumber(now.getHours())}点${completeNumber(now.getMinutes())}分${completeNumber(now.getSeconds())}秒`
+            return t
+        }
+        var getWeekDay_En = function (day) {
+            var show_day=new Array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday')
+            return show_day[day]
+        }
+        var getWeekDay_Ch = function (day) {
+            var show_day=new Array('星期日','星期一','星期二','星期三','星期四','星期五','星期六')
+            return show_day[day]
+        }
+
+        var completeNumber = function (num) {
+            if(num < 10){
+                return '0' + num
+            }
+            return num.toString()
+        }
+    </script>
+</body>
+</html>
