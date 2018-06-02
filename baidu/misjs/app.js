@@ -20,6 +20,18 @@ var sortByRegion = function (a,b) {
         return 0
     }
 };
+
+function getSales(data){
+    var result = []
+    for (var i in sourceData){
+        if ((sourceData[i].product == data[0] || sourceData[i].region == data[0])&&(sourceData[i].product == data[1] || sourceData[i].region == data[1])){
+            result = sourceData[i].sale
+        }
+    }
+
+    showsvg(result)
+    drawLine(result,false)
+}
 let sourceData = [{
     product: "手机",
     region: "华东",
@@ -57,10 +69,12 @@ let sourceData = [{
     region: "华南",
     sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
 }];
+
 var main = function(){
     showTable(sourceData,3,3)
     toggleCheckbox(true,'全选地区')
     toggleCheckbox(true,'全选商品')
+
     for (var i = 0; i < selectRegion.length; i++){
         selectRegion[i].addEventListener('click',function (e) {
             doSelect(e.target.checked,e.target.value,e.target.className)
@@ -71,4 +85,32 @@ var main = function(){
             doSelect(e.target.checked,e.target.value,e.target.className)
         })
     }
+
+    var table = document.getElementById('table-wrapper')
+    table.addEventListener('mouseover',function (e) {
+        console.log('x')
+        var data = []
+        if ((e.path.length == 9)){
+            if (e.path[1].childNodes.length == 14){
+                if (!(e.path[1].childNodes[0].innerText == '产品' || e.path[1].childNodes[0].innerText == '地区')){
+                    data.push(e.path[1].childNodes[0].innerText)
+                    data.push(e.path[1].childNodes[1].innerText)
+                    getSales(data)
+                }
+            }else{
+                var y = e.path[1]
+                while(y.cells.length == 13){
+                    y = y.previousSibling
+                }
+                data.push(y.cells[0].innerText)
+                data.push(e.path[1].childNodes[0].innerText)
+                getSales(data)
+            }
+        }
+    })
+
+    var refresh = document.getElementById('refresh-btn')
+    refresh.addEventListener('click',function () {
+        drawLine(getResult().result,true)
+    })
 }

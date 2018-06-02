@@ -10,9 +10,17 @@ var doSelect = function (flag,changeThing,targetClassName) {
         checkCheckbox(changeThing)
     }
     //数据处理
+
+    var x = getResult()
+    showTable(x.result,x.countProduct,x.countRegion)
+    drawLine(x.result,true)
+
+};
+function getResult() {
     var result = [];
     var countRegion = 0;
     var countProduct = 3;
+    var sourceResult = {}
     for (var i = 0; i < selectRegion.length - 1; i++){
         if (selectRegion[i].checked) {
             countRegion++;
@@ -33,9 +41,11 @@ var doSelect = function (flag,changeThing,targetClassName) {
             }
         }
     }
-    showTable(result,countProduct,countRegion)
-
-};
+    sourceResult.result = result
+    sourceResult.countRegion = countRegion
+    sourceResult.countProduct = countProduct
+    return sourceResult
+}
 //点击全选的状态切换
 var toggleCheckbox = function (flag,changeThing) {
     if (flag){

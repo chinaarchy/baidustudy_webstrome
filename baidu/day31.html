@@ -6,6 +6,8 @@
     <script type="text/javascript" src="./misjs/showTable.js"></script>
     <script type="text/javascript" src="./misjs/doSelect.js"></script>
     <script type="text/javascript" src="./misjs/app.js"></script>
+    <script type="text/javascript" src="./misjs/bar.js"></script>
+    <script type="application/javascript" src="./misjs/line.js"></script>
     <style>
         table{
             border: 1px solid black;
@@ -13,25 +15,50 @@
         td{
             border: 1px solid black;
         }
+        .class{
+            float: left;
+        }
+        .right{
+            float: right;
+        }
     </style>
 </head>
 <body>
-<div id="region-select">
-    <input type="checkbox" value="华东" name="region" >华东
-    <input type="checkbox" value="华北" name="region">华北
-    <input type="checkbox" value="华南" name="region">华南
-    <input type="checkbox" value="全选地区" name="region" class="all" checked="true">全选
+
+    <div id="region-select">
+        <input type="checkbox" value="华东" name="region" >华东
+        <input type="checkbox" value="华北" name="region">华北
+        <input type="checkbox" value="华南" name="region">华南
+        <input type="checkbox" value="全选地区" name="region" class="all" checked="true">全选
+    </div>
+    <div id="product-select">
+        <input type="checkbox" value="手机" name="product" >手机
+        <input type="checkbox" value="笔记本" name="product">笔记本
+        <input type="checkbox" value="智能音箱" name="product">智能音箱
+        <input type="checkbox" value="全选商品" name="product" class="all" checked="true">全选
+    </div>
+    <button type="button" id="refresh-btn">查看全部数据</button>
+    <div id="table-wrapper">
+    </div>
+
+
+
+<div>
+    <svg version="1.1"
+         baseProfile="full"
+         width="300"  height="200"
+         xmlns="http://www.w3.org/2000/svg"
+         id="svg-table">
+    </svg>
+
+    <canvas id="canvas" width="300" height="200"></canvas>
 </div>
-<div id="product-select">
-    <input type="checkbox" value="手机" name="product" >手机
-    <input type="checkbox" value="笔记本" name="product">笔记本
-    <input type="checkbox" value="智能音箱" name="product">智能音箱
-    <input type="checkbox" value="全选商品" name="product" class="all" checked="true">全选
-</div>
-<div id="table-wrapper">
-</div>
+
+
 <script>
+
     main()
+
 </script>
 </body>
 </html>
