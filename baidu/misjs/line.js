@@ -25,15 +25,24 @@ function draw(saledata,color,maxSale) {
     })
     if (canvas.getContext){
         var ctx = canvas.getContext('2d')
-        ctx.beginPath()
-        ctx.strokeStyle = color
-        for (let month in data) {
-            if (month == 0)
-                ctx.moveTo(30 + month * 20, data[0])
-            else
-                ctx.lineTo(30 + month * 20, data[month])
+        for (var i in data){
+            ctx.beginPath()
+            ctx.arc(30+i*20,data[i],3,0,Math.PI,true)
+            ctx.closePath()
+            ctx.fillStyle = color
+            ctx.fill()
+
+            ctx.beginPath()
+            if (i == 0){
+                ctx.moveTo(30+i*20,data[i])
+            } else{
+                ctx.moveTo(30+(i-1)*20,data[i-1])
+                ctx.lineTo(30+i*20,data[i])
+            }
+            ctx.closePath()
+            ctx.strokeStyle = color
+            ctx.stroke()
         }
-        ctx.stroke()
     }
 }
 function findMax(data) {
