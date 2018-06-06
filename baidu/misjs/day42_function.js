@@ -13,6 +13,7 @@ Restaurant.prototype.fire = function (Employee) {
     this.staff.splice(this.staff.indexOf(Employee),1)
 }
 //定义员工类
+
 function Employee(name,ID,salary) {
     this.name = name
     this.ID = ID
