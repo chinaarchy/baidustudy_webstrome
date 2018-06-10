@@ -26,7 +26,7 @@
 <body>
 
     <div id="region-select">
-        <input type="checkbox" value="华东" name="region" >华东
+        <input type="checkbox" id="华东" value="华东" name="region" ><label for="华东">华东</label>
         <input type="checkbox" value="华北" name="region">华北
         <input type="checkbox" value="华南" name="region">华南
         <input type="checkbox" value="全选地区" name="region" class="all" checked="true">全选
@@ -58,7 +58,8 @@
 <script>
 
     main()
-
+    localStorage.getItem('mySetting','value')
+    var mySetting = localStorage.getItem('mySetting')
 </script>
 </body>
 </html>

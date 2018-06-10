@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script type="application/javascript" src="./js/checkboxCreate.js"></script>
+    <style>
+        td input{
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="region-selector"></div>
+    <div id="product-selector"></div>
+    <input id="click-btn" value="点击" readonly>
+    <button id="clear-btn">clear</button>
+    <div id="table-wrapper">
+        <table id="result-table">
+            <tr>
+                <td><input value="地区" ></td>
+                <td><input value="商品" readonly></td>
+                <td><input value="一月" readonly></td>
+                <td><input value="二月" readonly></td>
+                <td><input value="三月" readonly></td>
+                <td><input value="四月" readonly></td>
+                <td><input value="五月" readonly></td>
+                <td><input value="六月" readonly></td>
+                <td><input value="七月" readonly></td>
+                <td><input value="八月" readonly></td>
+                <td><input value="九月" readonly></td>
+                <td><input value="十月" readonly></td>
+                <td><input value="十一月" readonly></td>
+                <td><input value="十二月" readonly></td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    let sourceData = [{
+        product: "手机",
+        region: "华东",
+        sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
+    }, {
+        product: "手机",
+        region: "华北",
+        sale: [80, 70, 90, 110, 130, 145, 150, 160, 170, 185, 190, 200]
+    }, {
+        product: "手机",
+        region: "华南",
+        sale: [220, 200, 240, 250, 260, 270, 280, 295, 310, 335, 355, 380]
+    }, {
+        product: "笔记本",
+        region: "华东",
+        sale: [50, 60, 80, 110, 30, 20, 70, 30, 420, 30, 20, 20]
+    }, {
+        product: "笔记本",
+        region: "华北",
+        sale: [30, 35, 50, 70, 20, 15, 30, 50, 710, 130, 20, 20]
+    }, {
+        product: "笔记本",
+        region: "华南",
+        sale: [80, 120, 130, 140, 70, 75, 120, 90, 550, 120, 110, 100]
+    }, {
+        product: "智能音箱",
+        region: "华东",
+        sale: [10, 30, 4, 5, 6, 5, 4, 5, 6, 5, 5, 25]
+    }, {
+        product: "智能音箱",
+        region: "华北",
+        sale: [15, 50, 15, 15, 12, 11, 11, 12, 12, 14, 12, 40]
+    }, {
+        product: "智能音箱",
+        region: "华南",
+        sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
+    }];
+
+    var clickBtn = document.getElementById('click-btn')
+    var clearBtn = document.getElementById('clear-btn')
+    var table = document.getElementById('result-table')
+
+    for(var x in sourceData){
+        let tr = document.createElement('tr')
+        tr.product = sourceData[x].product
+        tr.region = sourceData[x].region
+
+        //打印表格sale数据
+        for(var y in sourceData[x].sale){
+            let td = document.createElement('td')
+            td.innerText = td.sale = sourceData[x].sale[Number(y)-2]
+            td.region = sourceData[x].region
+            td.product = sourceData[x].product
+            td.addEventListener('mouseover',function () {
+                //console.log(td.region)
+            })
+            tr.appendChild(td)
+        }
+        table.appendChild(tr)
+    }
+
+
+    //checkbox
+    var regionCheckBox =  new CheckboxCreator({divs:'region-selector',charactor:'地区',datas:['华东','华北','华南','全选']})
+    var productCheckBox = new CheckboxCreator({divs:'product-selector',charactor:'产品',datas:['手机','笔记本','智能音箱','全选']})
+    regionCheckBox.createCheckbox()
+    productCheckBox.createCheckbox()
+</script>
+</html>
